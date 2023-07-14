@@ -19,6 +19,9 @@
     "type": "git",
     "url": "git+https://github.com/Jen1w3n/Node.js-Test.git"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
