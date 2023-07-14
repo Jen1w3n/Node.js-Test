@@ -98,8 +98,8 @@ router.get('/get-user/:username', async (req, res) =>
 router.post('/add-user', async (req, res) => 
 {
 	try {
-		const newUser = req.body;
-		if (!newUser || !newUser.firstName || !newUser.lastName || !newUser.email || !newUser.role) {
+		const addUser = req.body;
+		if (!addUser || !addUser.firstName || !addUser.lastName || !addUser.email || !addUser.role) {
 		  console.log("Fields empty or incomplete");
 		  return res.status(500).json({ error: 'Fields empty or incomplete.' });
 		}
@@ -111,15 +111,15 @@ router.post('/add-user', async (req, res) =>
 		  const collection = client.db("Users").collection("User_details");
 	
 		  // Generate username and ID
-		  newUser.username = await generateUsername(newUser);
+		  addUser.username = await generateUsername(addUser);
 	
 		  // Generate username and ID
-		  newUser.id = uuid.v4();
+		  addUser.id = uuid.v4();
 	
 		  // Insert the new user into the collection
-		  await collection.insertOne(newUser);
+		  await collection.insertOne(addUser);
 	
-		  res.json(newUser);
+		  res.json(addUser);
 		} catch (err) {
 		  console.error(err);
 		  res.status(500).send(err);//json({ error: 'Internal Server Error' });
@@ -129,9 +129,9 @@ router.post('/add-user', async (req, res) =>
 		}
 	
 // Generate username function
-async function generateUsername(newUser) {
-	const firstName = newUser.firstName;
-	const lastName = newUser.lastName;
+async function generateUsername(addUser) {
+	const firstName = addUser.firstName;
+	const lastName = addUser.lastName;
 	let username = "";
 	username += firstName.substring(0, 3).toLowerCase();
 	console.log("first Name: " + firstName);
@@ -145,7 +145,7 @@ async function generateUsername(newUser) {
 	  if (!vowels.includes(letter) && counter < 3) {
 		username += letter.toLowerCase();
 		counter++;
-	  } 
+	  }
 	}
   
 	if (counter < 3) {
