@@ -8,6 +8,7 @@ app.use(express.json());
 const uuid = require('uuid');
 const port = 5000;
 
+//coding from my phone test
 //MongoDB Database
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://jennadebeer01:1405@cluster0.zlddtx3.mongodb.net/?retryWrites=true&w=majority";
